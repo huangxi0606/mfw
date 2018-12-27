@@ -65,7 +65,9 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'mfw.pipelines.MfwPipeline': 300,
+   # 'mfw.csv.pipelines.MfwCsvPipeline': 300,
+   # 'mfw.pipelines.MfwPipeline': 300,
+    'mfw.json.pipelines.MfwJsonPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -94,8 +96,8 @@ DOWNLOADER_MIDDLEWARES = {
     # "weibo.middleware.CookiesMiddleware": 402,
 }
 
-MYSQL_HOSTS=''
-MYSQL_USER=''
-MYSQL_PASSWORD=''
-MYSQL_PORT=''
-MYSQL_DB=''
+# MYSQL_HOSTS=''
+# MYSQL_USER=''
+# MYSQL_PASSWORD=''
+# MYSQL_PORT=''
+# MYSQL_DB=''
