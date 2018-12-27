@@ -61,22 +61,23 @@ class MafengwoSpider(scrapy.Spider):
     #         count += 1
     #         return self.get_html(url, count)
     def start_requests(self):
-        # dicts = [
-        #     '台湾',
-        #     '土耳其'
-        # ]
-        # for dict in dicts:
-        #     dict = parse.quote(dict)
-        #     print(dict)
-        #     print('huangxi')
-        #     for i in range(1, 49):
-        #         url ="http://www.mafengwo.cn/search/s.php?q="+ dict +"&p=" +str(i)+ "&t=info&kt=1"
-        #         print(url)
+        dicts = [
+            '台湾',
+            '土耳其'
+        ]
+        for dict in dicts:
+            mfwItem = MfwItem()
+            mfwItem['type'] = dict
+            dict = parse.quote(dict)
+            print(dict)
+            print('huangxi')
+            for i in range(1, 49):
+                url ="http://www.mafengwo.cn/search/s.php?q="+ dict +"&p=" +str(i)+ "&t=info&kt=1"
+                # print(url)
 
-        url ='http://www.mafengwo.cn/search/s.php?q=%E5%9C%9F%E8%80%B3%E5%85%B6&p=1&t=info&kt=1'
-        mfwItem = MfwItem()
-        mfwItem['type'] ='土耳其'
-        yield Request(url=url,callback=self.parse, meta ={'headers': Header,'mfwItem':mfwItem})
+        # url ='http://www.mafengwo.cn/search/s.php?q=%E5%9C%9F%E8%80%B3%E5%85%B6&p=1&t=info&kt=1'
+
+                yield Request(url=url,callback=self.parse, meta ={'headers': Header,'mfwItem':mfwItem})
 
     def parse(self, response):
         # print('luckly')
@@ -129,12 +130,20 @@ class MafengwoSpider(scrapy.Spider):
         mfwItem = MfwItem()
         if soup.find("li", class_="time"):
             mfwItem['time'] =soup.find("li", class_="time").text
+        else:
+            mfwItem['time'] = 'wu'
         if soup.find("li", class_="day"):
             mfwItem['day'] =soup.find("li", class_="day").text
+        else:
+            mfwItem['day'] = 'wu'
         if soup.find("li", class_="people"):
             mfwItem['people'] =soup.find("li", class_="people").text
+        else:
+            mfwItem['people'] = 'wu'
         if soup.find("li", class_="cost"):
             mfwItem['cost'] =soup.find("li", class_="cost").text
+        else:
+            mfwItem['cost'] = 'wu'
         if soup.find("div", class_="_j_content_box"):
             mfwItem['content'] =soup.find("div", class_="_j_content_box").text.replace('\n', '').replace(' ', '')
         else:
