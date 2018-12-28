@@ -67,7 +67,8 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
    # 'mfw.csv.pipelines.MfwCsvPipeline': 300,
    # 'mfw.pipelines.MfwPipeline': 300,
-    'mfw.json.pipelines.MfwJsonPipeline': 300,
+   #  'mfw.json.pipelines.MfwJsonPipeline': 300,
+    'mfw.redis.pipelines.MfwRedisPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
